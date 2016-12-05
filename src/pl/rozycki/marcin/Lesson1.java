@@ -46,7 +46,7 @@ public class Lesson1 {
 
     /* YOUR CODE HERE */
     StringBuilder builder = new StringBuilder();
-    list.forEach((String s) -> {
+    list.forEach(s -> {
         builder.append(s.charAt(0));
     });
 
@@ -63,6 +63,9 @@ public class Lesson1 {
         "alpha", "bravo", "charlie", "delta", "echo", "foxtrot"));
 
     /* YOUR CODE HERE */
+    list.removeIf(s -> s.length() % 2 == 1);
+
+    System.out.println(list);
   }
 
   /**
@@ -75,6 +78,9 @@ public class Lesson1 {
         "alpha", "bravo", "charlie", "delta", "echo", "foxtrot"));
 
     /* YOUR CODE HERE */
+    list.replaceAll(s -> s.toUpperCase());
+
+    System.out.println(list);
   }
 
   /**
