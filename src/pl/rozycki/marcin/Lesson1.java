@@ -96,6 +96,13 @@ public class Lesson1 {
     map.put("a", 1);
 
     /* YOUR CODE HERE */
+    StringBuilder builder = new StringBuilder();
+    map.forEach((s, i) -> {
+        String tmp = s + i;
+        builder.append(tmp);
+    });
+
+    System.out.println(builder.toString());
   }
 
   /**
