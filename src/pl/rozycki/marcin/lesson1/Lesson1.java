@@ -3,7 +3,7 @@
  *
  * JDK 8 MOOC Lesson 1 homework
  */
-package pl.rozycki.marcin;
+package pl.rozycki.marcin.lesson1;
 
 import java.util.*;
 
@@ -51,6 +51,12 @@ public class Lesson1 {
     });
 
     System.out.println(builder.toString());
+
+    /* COURSE SOLUTION */
+    StringBuilder sb = new StringBuilder();
+    list.forEach(s -> sb.append(s.charAt(0)));
+    String result = sb.toString();
+    System.out.println("Exercise 1 result = " + result);
   }
 
   /**
@@ -66,6 +72,10 @@ public class Lesson1 {
     list.removeIf(s -> s.length() % 2 == 1);
 
     System.out.println(list);
+
+    /* COURSE SOLUTION */
+    list.removeIf(s -> (s.length() & 1) == 1);
+    list.forEach(System.out::println);
   }
 
   /**
@@ -81,6 +91,10 @@ public class Lesson1 {
     list.replaceAll(s -> s.toUpperCase());
 
     System.out.println(list);
+
+    /* COURSE SOLUTION */
+    list.replaceAll(String::toUpperCase);
+    list.forEach(System.out::println);
   }
 
   /**
@@ -103,6 +117,12 @@ public class Lesson1 {
     });
 
     System.out.println(builder.toString());
+
+    /* COURSE SOLUTION */
+    StringBuilder sb = new StringBuilder();
+    map.forEach((k, v) -> sb.append(String.format("%s%s", k, v)));
+    String result = sb.toString();
+    System.out.println("Exercise 4 result = " + result);
   }
 
   /**
@@ -114,9 +134,10 @@ public class Lesson1 {
     List<Integer> list = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
 
     /* YOUR CODE HERE */
-    Runnable task = () -> System.out.println(list);
+    new Thread(() -> System.out.println(list)).start();
 
-    task.run();
+    /* COURSE SOLUTION */
+    new Thread(() -> list.forEach(System.out::println)).start();
   }
 
   /**
