@@ -74,6 +74,7 @@ public class Lesson2 {
 
     /* YOUR CODE HERE */
     List<String> newList = list.stream()
+            .filter(s -> s.length() % 2 == 1)
             .map(String::toLowerCase)
             .collect(Collectors.toList());
 
@@ -91,6 +92,11 @@ public class Lesson2 {
         "The", "quick", "brown", "fox", "jumped", "over", "the", "lazy", "dog");
 
     /* YOUR CODE HERE */
+    String txt = list.stream()
+            .skip(1)
+            .limit(3)
+            .collect(Collectors.joining("-"));
+    System.out.println(txt);
   }
 
   /**
@@ -100,6 +106,8 @@ public class Lesson2 {
     try (BufferedReader reader = Files.newBufferedReader(
         Paths.get("C:\\Users\\rozyc\\IdeaProjects\\MOOC\\out\\production\\MOOC\\pl\\rozycki\\marcin\\lesson2\\SonnetI.txt"), StandardCharsets.UTF_8)) {
       /* YOUR CODE HERE */
+      long lines = reader.lines().count();
+      System.out.println(lines);
     }
   }
   
@@ -113,6 +121,13 @@ public class Lesson2 {
     try (BufferedReader reader = Files.newBufferedReader(
         Paths.get("C:\\Users\\rozyc\\IdeaProjects\\MOOC\\out\\production\\MOOC\\pl\\rozycki\\marcin\\lesson2\\SonnetI.txt"), StandardCharsets.UTF_8)) {
       /* YOUR CODE HERE */
+      List<String> uniqueWords = reader.lines()
+              .flatMap(line -> Stream.of(line.split(WORD_REGEXP)))
+              .distinct()
+              .collect(Collectors.toList());
+
+      uniqueWords.stream()
+              .forEach(System.out::println);
     }
   }
   
@@ -125,6 +140,14 @@ public class Lesson2 {
     try (BufferedReader reader = Files.newBufferedReader(
         Paths.get("C:\\Users\\rozyc\\IdeaProjects\\MOOC\\out\\production\\MOOC\\pl\\rozycki\\marcin\\lesson2\\SonnetI.txt"), StandardCharsets.UTF_8)) {
       /* YOUR CODE HERE */
+      List<String> words = reader.lines()
+            .flatMap(line -> Stream.of(line.split(WORD_REGEXP)))
+              .map(String::toLowerCase)
+              .distinct()
+              .sorted()
+              .collect(Collectors.toList());
+
+      words.stream().forEach(System.out::println);
     }
   }
   
@@ -135,6 +158,14 @@ public class Lesson2 {
     try (BufferedReader reader = Files.newBufferedReader(
         Paths.get("C:\\Users\\rozyc\\IdeaProjects\\MOOC\\out\\production\\MOOC\\pl\\rozycki\\marcin\\lesson2\\SonnetI.txt"), StandardCharsets.UTF_8)) {
       /* YOUR CODE HERE */
+      List<String> words = reader.lines()
+              .flatMap(line -> Stream.of(line.split(WORD_REGEXP)))
+              .map(String::toLowerCase)
+              .distinct()
+              .sorted((a, b) -> a.length() - b.length())
+              .collect(Collectors.toList());
+
+      words.stream().forEach(System.out::println);
     }
   }
 
